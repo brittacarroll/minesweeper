@@ -199,9 +199,6 @@ class MinesweeperAI():
         if sentence1 == sentence2 or sentence1 is sentence2:
             return
 
-        if sentence1.cells == None or sentence2.cells == None:
-            return
-
         if sentence1.cells.issubset(sentence2.cells):
             new_cells = sentence2.cells - sentence1.cells
             new_count = sentence2.count - sentence1.count
@@ -209,13 +206,13 @@ class MinesweeperAI():
             if new_sentence not in self.knowledge:
                 self.knowledge.append(new_sentence)
 
-        elif sentence2.cells.issubset(sentence1.cells):
-            new_cells = sentence1.cells - sentence2.cells
-            new_count = sentence1.count - sentence2.count
-            new_sentence = Sentence(new_cells, new_count)
+        # elif sentence2.cells.issubset(sentence1.cells):
+        #     new_cells = sentence1.cells - sentence2.cells
+        #     new_count = sentence1.count - sentence2.count
+        #     new_sentence = Sentence(new_cells, new_count)
 
-            if new_sentence not in self.knowledge:
-                self.knowledge.append(new_sentence) 
+            # if new_sentence not in self.knowledge:
+            #     self.knowledge.append(new_sentence) 
    
 
     def add_knowledge(self, cell, count):
@@ -266,7 +263,7 @@ class MinesweeperAI():
         # remove reduncancies in self.knowledge
         for sentence1 in self.knowledge:
             for sentence2 in self.knowledge:
-                if sentence1 == sentence2 and len(self.knowledge) > 1:
+                if sentence1 == sentence2:
                     self.knowledge.remove(sentence2)
 
                 self.build_new_sentence(sentence1, sentence2)
