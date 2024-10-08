@@ -295,8 +295,7 @@ class MinesweeperAI():
             1) have not already been chosen, and
             2) are not known to be mines
         """
-        
-        print('in make random move')
+    
         minesweeper_board = Minesweeper()
 
         height_of_board = minesweeper_board.height
